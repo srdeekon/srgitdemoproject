@@ -4,7 +4,7 @@ on:
     
 jobs:
   tag_repo:
-    name: Get runner id and tag the current code snapshot
+    name: Tag the current code snapshot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
