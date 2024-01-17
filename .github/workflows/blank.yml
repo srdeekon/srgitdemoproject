@@ -8,9 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Display Build Number
+        run: |
+         echo "Build Number: $GITHUB_RUN_NUMBER"
+      
       - name: Tag and push current repo code
         run: |
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
-          TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
+          #TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
+          TAG="$GITHUB_RUN_NUMBER"
           git tag $TAG
           git push origin $TAG
