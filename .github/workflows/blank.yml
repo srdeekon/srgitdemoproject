@@ -1,6 +1,10 @@
+name: auto_tag
+on:
+  workflow_dispatch:
+    
 jobs:
   tag_repo:
-    name: Tag the current code snapshot
+    name: Get runner id and tag the current code snapshot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,9 +17,6 @@ jobs:
         id: branch-name
         run: echo "BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
 
-      - name: Display Branch Name
-        run: echo "Branch Name: ${{ env.BRANCH_NAME }}"
-        
       - name: Tag and push current repo code
         run: |
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
