@@ -12,6 +12,7 @@ jobs:
       - name: Display Build Number
         run: |
           echo "Build Number: $GITHUB_RUN_NUMBER"
+          echo "Branch Name : $GITHUB_REF"
 
       - name: Get Branch Name
         id: branch-name
