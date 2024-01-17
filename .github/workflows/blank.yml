@@ -17,6 +17,9 @@ jobs:
         id: branch-name
         run: echo "BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
 
+      - name: Get Branch Name
+        run: echo "BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
+
       - name: Tag and push current repo code
         run: |
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
