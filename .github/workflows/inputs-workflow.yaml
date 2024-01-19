@@ -1,3 +1,6 @@
+name: inputs-testing
+run-name: ${{ github.actor }} is testing inputs
+
 on:
   workflow_dispatch:
     inputs:
