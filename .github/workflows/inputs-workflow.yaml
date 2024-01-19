@@ -29,7 +29,14 @@ on:
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }} 
+    
     steps:
       - name: Print the input tag to STDOUT
+        if:  ${{ inputs.print_tags }} 
         run: echo  The tags are ${{ inputs.tags }} 
+
+      - name: No Print the input tag to STDOUT
+        if:  ${{ !inputs.print_tags }} 
+        run: echo  The tags are ${{ inputs.tags }} 
+
+        
