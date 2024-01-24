@@ -1,0 +1,19 @@
+name: Example Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Branch name'
+        required: true
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Print Branch Name
+        run: echo "Branch Name: ${{ github.event.inputs.branch_name }}"
