@@ -15,15 +15,18 @@ jobs:
           echo "Branch Name : $GITHUB_REF"
           echo "BRANCH_NAME : $GITHUB_REF_NAME"
 
-      - name: Get tag
-        id: tag
-        uses: devops-actions/action-get-tag@v1.0.1 
-        with:
-            #strip_v: true # Optional: Remove 'v' character from version
-            default: v0.0.0 # Optional: Default version when tag not found
+    
+      - name: Get Tags
+        id: tags
+        run: |
+          git fetch --tags
+          echo "Tags fetched" 
 
-      - name: Use tag
-        run: echo ${{steps.tag.outputs.tag}}
+          
+      - name: Get Latest Tag
+        id: latest-tag
+        run: |
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
 
      # - name: Get Branch Name
       #  id: branch-name
