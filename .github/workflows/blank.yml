@@ -12,7 +12,7 @@ jobs:
       - name: Display Build Number
         run: |
           echo "Build Number: $GITHUB_RUN_NUMBER"
-          echo "Branch Name : $GITHUB_REF"
+          #echo "Branch Name : $GITHUB_REF"
           run: echo "BRANCH_NAME : $GITHUB_REF_NAME"
 
       - name: Get tag
