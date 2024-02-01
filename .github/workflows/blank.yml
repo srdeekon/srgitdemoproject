@@ -15,6 +15,16 @@ jobs:
           echo "Branch Name : $GITHUB_REF"
           run: echo "BRANCH_NAME : $GITHUB_REF_NAME"
 
+      - name: Get tag
+        id: tag
+        uses: devops-actions/action-get-tag@v1.0.1 
+        with:
+            strip_v: true # Optional: Remove 'v' character from version
+            default: v0.0.0 # Optional: Default version when tag not found
+
+      - name: Use tag
+        run: echo ${{steps.tag.outputs.tag}}
+
      # - name: Get Branch Name
       #  id: branch-name
        # run: echo "BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')" >> $GITHUB_ENV
