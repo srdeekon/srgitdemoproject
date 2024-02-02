@@ -29,6 +29,16 @@ jobs:
           latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
           echo "Latest Tag is : $latest_tag"
 
+      - name: List Tags
+        id: list_tags
+        run: |
+          tags=$(git tag -l)
+          echo "::set-output name=tags::$tags"
+
+      - name: Print Tags
+        run: echo Tags ${{ steps.list_tags.outputs.tags }}
+          
+
       # - name: Get current tag
       #   id: get-current-tag
       #   uses: zingimmick/github-action-get-current-tag@v1
