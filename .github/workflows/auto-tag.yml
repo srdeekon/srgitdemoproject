@@ -60,8 +60,9 @@ jobs:
           TAG="$GITHUB_REF_NAME-$GITHUB_RUN_NUMBER"
           #git tag $TAG
            #git push origin $TAG
-          git tag -a "$TAG" -m "Version $TAG"
-          git remote set -url https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/srgitdemoproject.git
-          git push https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/srgitdemoproject.git $TAG1
+         
+           git remote set -url https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/srgitdemoproject.git
+           git tag -a "$TAG" -m "Version $TAG"
+           git push https://$GITHUB_ACTOR:${GITHUB_TOKEN}@github.com/srgitdemoproject.git $TAG1
          
           #git push origin --delete $(git tag -l)
