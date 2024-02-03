@@ -17,6 +17,8 @@ jobs:
           git branch --show-current
           echo "GitHub username: ${{ secrets.GITHUB_ACTOR }}"
           echo "Token : ${{ secrets.GITHUB_TOKEN }}"
+          echo "GitHub username (secrets.GITHUB_ACTOR): ${{ secrets.GITHUB_ACTOR }}"
+          echo "GitHub username (github.actor): ${{ github.actor }}"
           
 
     
