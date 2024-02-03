@@ -59,5 +59,6 @@ jobs:
           # TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
           TAG="$GITHUB_REF_NAME-$GITHUB_RUN_NUMBER"
           git tag $TAG
+          git tag -a "$TAG" -m "Version $TAG"
           git push origin $TAG
-          git push origin --delete $(git tag -l)
+          #git push origin --delete $(git tag -l)
