@@ -15,7 +15,7 @@ jobs:
           echo "Branch Name : $GITHUB_REF"
           echo "BRANCH_NAME : $GITHUB_REF_NAME"
           git branch --show-current
-          echo "User Name: ${{ secrets.GITHUB_ACTOR }}"
+          echo "GitHub username: ${{ secrets.GITHUB_ACTOR }}"
           echo "Token : ${{ secrets.GITHUB_TOKEN }}"
           
 
