@@ -14,6 +14,7 @@ jobs:
           echo "Build Number: $GITHUB_RUN_NUMBER"
           echo "Branch Name : $GITHUB_REF"
           echo "BRANCH_NAME : $GITHUB_REF_NAME"
+          git branch --show-current
 
     
       - name: Get Tags
