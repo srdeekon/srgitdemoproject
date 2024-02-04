@@ -47,10 +47,15 @@ jobs:
       - name: Describe Tags
         run: |
           git fetch --prune --unshallow
-          latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
-          echo "Latest Tag1: $latest_tag1"
-          latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
-          echo "Latest Tag: $latest_tag"
+          # latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
+          # echo "Latest Tag1: $latest_tag1"
+          # latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
+          # echo "Latest Tag: $latest_tag"
+
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          
+          latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+          echo "Latest Tag: $latest_release_tag"
           
 
       # - name: Get current tag
