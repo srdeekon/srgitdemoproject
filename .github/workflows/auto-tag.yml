@@ -52,7 +52,9 @@ jobs:
           # latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
           # echo "Latest Tag: $latest_tag"
 
-          latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          
+          latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
           echo "Latest Tag: $latest_release_tag"
          
           
@@ -91,7 +93,7 @@ jobs:
           # BUILD_NUMBER=$(echo "$latest_tag1" | cut -d '-' -f 3)
 
 
-          latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
+          latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
           echo "Latest Tag: $latest_release_tag"
          
           BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
