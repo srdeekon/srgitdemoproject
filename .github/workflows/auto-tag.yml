@@ -14,6 +14,12 @@ jobs:
           echo "Build Number: $GITHUB_RUN_NUMBER"
           echo "Branch Name : $GITHUB_REF"
           echo "BRANCH_NAME : $GITHUB_REF_NAME"
+          git branch --show-current
+          echo "GitHub username: ${{ secrets.GITHUB_ACTOR }}"
+          echo "Token : ${{ secrets.GITHUB_TOKEN }}"
+          echo "GitHub username (secrets.GITHUB_ACTOR): ${{ secrets.GITHUB_ACTOR }}"
+          echo "GitHub username (github.actor): ${{ github.actor }}"
+          
 
     
       - name: Get Tags
@@ -57,5 +63,14 @@ jobs:
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
           # TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
           TAG="$GITHUB_REF_NAME-$GITHUB_RUN_NUMBER"
-          git tag $TAG
-          git push origin $TAG
+          git config --global user.email "sdeekonda@gmail.com"
+          git config --global user.name "srd"
+          #git tag $TAG
+           #git push origin $TAG
+         
+           git remote set-url origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/srdeekon/srgitdemoproject.git"
+           git tag -a $TAG -m "Version $TAG"
+           #git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/srdeekon/srgitdemoproject.git $TAG1
+           git push origin $TAG
+         
+          #git push origin --delete $(git tag -l)
