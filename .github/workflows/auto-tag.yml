@@ -43,6 +43,12 @@ jobs:
 
       - name: Print Tags
         run: echo Tags ${{ steps.list_tags.outputs.tags }}
+
+      - name: Describe Tags
+        run: |
+          git fetch --prune --unshallow
+          latest_tag=$(git describe --tags --abbrev=0 HEAD~)
+          echo "Latest Tag: $latest_tag"
           
 
       # - name: Get current tag
@@ -62,7 +68,18 @@ jobs:
         run: |
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
           # TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
-          TAG="$GITHUB_REF_NAME-$GITHUB_RUN_NUMBER"
+
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          echo "Branch Name : $BRANCH_NAME"
+          BRANCH_NAME_LOWER=$(echo "$BRANCH_NAME" | tr '[:upper:]' '[:lower:]')
+          echo " Branch Name to Lowercase : $BRANCH_NAME_LOWER"
+          BUILD_NUMBER=$(echo "$latest_tag" | cut -d '-' -f 2)
+          echo "Build Number : $BUILD_NUMBER"
+          NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
+          echo "New Build Number : $NEW_BUILD_NUMBER"
+
+          TAG=$BRANCH_NAME_LOWER-$VERSION-$NEW_BUILD_NUMBER
+          
           git config --global user.email "sdeekonda@gmail.com"
           git config --global user.name "srd"
           #git tag $TAG
