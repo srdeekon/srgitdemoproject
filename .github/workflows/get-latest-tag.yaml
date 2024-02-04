@@ -15,7 +15,9 @@ jobs:
         run: |
           git fetch --prune --unshallow
           #latest_tag=$(git describe --tags --abbrev=0 HEAD~)
-          latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1))
+          branch_name=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          echo "Branch Name : $BRANCH_NAME"
+          latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$branch_name"))
           echo "Latest Tag: $latest_tag"
           BUILD_NUMBER=$(echo "$latest_tag" | cut -d '-' -f 3)
           echo "Build Number : $BUILD_NUMBER"
