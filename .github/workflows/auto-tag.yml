@@ -49,10 +49,13 @@ jobs:
           git fetch --prune --unshallow
           #latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
           #echo "Latest Tag1: $latest_tag1"
-          latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
-          echo "Latest Tag: $latest_tag"
-          
+          # latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
+          # echo "Latest Tag: $latest_tag"
 
+          latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
+          echo "Latest Tag: $latest_release_tag"
+         
+          
       # - name: Get current tag
       #   id: get-current-tag
       #   uses: zingimmick/github-action-get-current-tag@v1
@@ -82,10 +85,16 @@ jobs:
 
           #latest_tag=$(git describe --tags --abbrev=0 HEAD~)
 
-          latest_tag1=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
-          echo "Latest Tag: $latest_tag1"
+          # latest_tag1=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
+          # echo "Latest Tag: $latest_tag1"
           
-          BUILD_NUMBER=$(echo "$latest_tag1" | cut -d '-' -f 3)
+          # BUILD_NUMBER=$(echo "$latest_tag1" | cut -d '-' -f 3)
+
+
+          latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
+          echo "Latest Tag: $latest_release_tag"
+         
+          BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
           echo "Build Number : $BUILD_NUMBER"
           NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
           echo "New Build Number : $NEW_BUILD_NUMBER"
