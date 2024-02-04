@@ -16,6 +16,11 @@ jobs:
           git fetch --prune --unshallow
           latest_tag=$(git describe --tags --abbrev=0 HEAD~)
           echo "Latest Tag: $latest_tag"
+          BUILD_NUMBER=$(echo "$latest_tag" | cut -d '-' -f 3)
+          echo "Build Number : $BUILD_NUMBER"
+          NEW_BUIL_NUMBER=$((BUILD_NUMBER + 1))
+          echo "Build Number : $NEW_BUIL_NUMBER"
+          
 
 
 
