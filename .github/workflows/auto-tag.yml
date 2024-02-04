@@ -70,6 +70,7 @@ jobs:
          
            git remote set-url origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/srdeekon/srgitdemoproject.git"
            git tag -a $TAG -m "Version $TAG"
-           git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/srdeekon/srgitdemoproject.git $TAG1
+           #git push https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/srdeekon/srgitdemoproject.git $TAG1
+           git push origin $TAG
          
           #git push origin --delete $(git tag -l)
