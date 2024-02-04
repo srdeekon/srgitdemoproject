@@ -47,8 +47,8 @@ jobs:
       - name: Describe Tags
         run: |
           git fetch --prune --unshallow
-          latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
-          echo "Latest Tag1: $latest_tag1"
+          #latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
+          #echo "Latest Tag1: $latest_tag1"
           latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
           echo "Latest Tag: $latest_tag"
           
@@ -82,10 +82,10 @@ jobs:
 
           #latest_tag=$(git describe --tags --abbrev=0 HEAD~)
 
-          latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
-          echo "Latest Tag: $latest_tag"
+          latest_tag1=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
+          echo "Latest Tag: $latest_tag1"
           
-          BUILD_NUMBER=$(echo "$latest_tag" | cut -d '-' -f 3)
+          BUILD_NUMBER=$(echo "$latest_tag1" | cut -d '-' -f 3)
           echo "Build Number : $BUILD_NUMBER"
           NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
           echo "New Build Number : $NEW_BUILD_NUMBER"
