@@ -82,7 +82,7 @@ jobs:
           
           BUILD_NUMBER=$(echo "$latest_tag" | cut -d '-' -f 3)
           echo "Build Number : $BUILD_NUMBER"
-          NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
+          NEW_BUILD_NUMBER=$((BUILD_NUMBER + 2))
           echo "New Build Number : $NEW_BUILD_NUMBER"
 
           TAG=$BRANCH_NAME_LOWER-$VERSION-$NEW_BUILD_NUMBER
