@@ -63,6 +63,8 @@ jobs:
           # git remote set-url origin https://{your-personal-token}@github.com/{organization}/{repo-name}.git
           # TAG="Build_${GITHUB_REF_NAME}_$(date +"%d-%b-%Y_%HH_%MM")"
           TAG="$GITHUB_REF_NAME-$GITHUB_RUN_NUMBER"
+          git config --global user.email "sdeekonda@gmail.com"
+          git config --global user.name "srd"
           #git tag $TAG
            #git push origin $TAG
          
