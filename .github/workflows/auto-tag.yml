@@ -58,10 +58,12 @@ jobs:
           # echo "Latest Tag: $latest_release_tag"
 
           if git show-ref --tags --quiet; then
-              latest_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
-              echo "Latest Tag: $latest_release_tag"
+            echo "Tags found."
+            git fetch --prune --unshallow
+            latest_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+            echo "Latest Tag: $latest_tag"
           else
-             echo "No tags found."
+            echo "No tags found."
           fi
           
 
