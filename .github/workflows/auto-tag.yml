@@ -46,7 +46,7 @@ jobs:
 
       - name: Describe Tags
         run: |
-          # git fetch --prune --unshallow
+          git fetch --prune --unshallow
           # latest_tag1=$(git describe --tags --abbrev=0 HEAD~)
           # echo "Latest Tag1: $latest_tag1"
           # latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 "$BRANCH_NAME"))
