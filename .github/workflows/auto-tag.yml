@@ -82,7 +82,7 @@ jobs:
           BRANCH_NAME_LOWER=$(echo "$BRANCH_NAME" | tr '[:upper:]' '[:lower:]')
           echo " Branch Name to Lowercase : $BRANCH_NAME_LOWER"
           
-          VERSION=1.0
+          VERSION=2.0
 
 
           #latest_tag=$(git describe --tags --abbrev=0 HEAD~)
