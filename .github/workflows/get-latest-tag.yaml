@@ -22,7 +22,13 @@ jobs:
           # echo "Latest Tag: $latest_tag"
 
           latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
-          echo "Latest Tag: $latest_release_tag"
+          # echo "Latest Tag: $latest_release_tag"
+          
+          if [ -n "$latest_release_tag" ]; then
+            echo "Latest Release Tag: $latest_release_tag"
+          else
+            echo "No tags found."
+          fi
          
           BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
               
