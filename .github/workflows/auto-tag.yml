@@ -57,10 +57,9 @@ jobs:
           # latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
           # echo "Latest Tag: $latest_release_tag"
 
-          if git show-ref --tags --quiet; then
-            echo "Tags found."
-            latest_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
-            echo "Latest Tag: $latest_tag"
+          if [ -n "$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*" 2>/dev/null)" ]; then
+            echo "Latest Release Tag: $(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")"
+            latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
           else
             echo "No tags found."
           fi
@@ -102,13 +101,25 @@ jobs:
 
 
 
-          latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
-          echo "Latest Tag: $latest_release_tag"
+          # latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+          # echo "Latest Tag: $latest_release_tag"
+
+          if [ -n "$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*" 2>/dev/null)" ]; then
+            echo "Latest Release Tag: $(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")"
+            
+            latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+            
+            BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
+            echo "Build Number : $BUILD_NUMBER"
+            
+            NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
+            echo "New Build Number : $NEW_BUILD_NUMBER"
+          else
+            echo "No tags found."
+            NEW_BUILD_NUMBER=1
+          fi
          
-          BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
-          echo "Build Number : $BUILD_NUMBER"
-          NEW_BUILD_NUMBER=$((BUILD_NUMBER + 1))
-          echo "New Build Number : $NEW_BUILD_NUMBER"
+          
 
           TAG=$BRANCH_NAME_LOWER-$VERSION-$NEW_BUILD_NUMBER
           
