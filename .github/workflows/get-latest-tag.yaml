@@ -21,16 +21,16 @@ jobs:
           # latest_tag=$(git describe --tags --abbrev=0 $(git rev-list --tags --max-count=1 $branch_name))
           # echo "Latest Tag: $latest_tag"
 
-          latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
+          #latest_release_tag=$(git describe --tags --abbrev=0 --match "$branch_name*")
           # echo "Latest Tag: $latest_release_tag"
           
-          if [ -n "$latest_release_tag" ]; then
-            echo "Latest Release Tag: $latest_release_tag"
+          if [ -n "$(git describe --tags --abbrev=0 --match "$branch_name*" 2>/dev/null)" ]; then
+            echo "Latest Release Tag: $(git describe --tags --abbrev=0 --match "$branch_name*")"
           else
             echo "No tags found."
           fi
          
-          BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
+          #BUILD_NUMBER=$(echo "$latest_release_tag" | cut -d '-' -f 3)
               
           echo "Build Number : $BUILD_NUMBER"
           NEW_BUIL_NUMBER=$((BUILD_NUMBER + 1))
