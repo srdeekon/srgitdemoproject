@@ -57,12 +57,20 @@ jobs:
           # latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
           # echo "Latest Tag: $latest_release_tag"
 
-          if [ -n "$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*" 2>/dev/null)" ]; then
-            echo "Latest Release Tag: $(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")"
-            latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+          # git describe --tags "$(git rev-list --tags='BRANCH_NAME*' --max-count=1)"
+          if [ -n "$(git describe --tags "$(git rev-list --tags='BRANCH_NAME*' --max-count=1)" 2>/dev/null)" ]; then
+            echo "Latest Release Tag: $(git describe --tags "$(git rev-list --tags='BRANCH_NAME*' --max-count=1)")"
+            latest_release_tag=$(git describe --tags "$(git rev-list --tags='BRANCH_NAME*' --max-count=1)")
           else
             echo "No tags found."
           fi
+
+          # if [ -n "$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*" 2>/dev/null)" ]; then
+          #   echo "Latest Release Tag: $(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")"
+          #   latest_release_tag=$(git describe --tags --abbrev=0 --match "$BRANCH_NAME*")
+          # else
+          #   echo "No tags found."
+          # fi
           
 
       # - name: Get current tag
