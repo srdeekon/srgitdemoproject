@@ -1,5 +1,5 @@
 # Display name of workflow
-name: Sequential Jobs
+name: Default Jobs
 
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI or API.
