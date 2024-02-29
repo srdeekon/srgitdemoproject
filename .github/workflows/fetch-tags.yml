@@ -1,0 +1,22 @@
+name: Fetch Tags
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Fetch Tags
+        id: fetch_tags
+        run: |
+          REPO_NAME="owner/repository"  # Replace with the owner and repository name
+          TOKEN=${{ secrets.GH_TOKEN }}
+          TAGS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO_NAME/tags" | jq -r '.[].name')
+          #echo "::set-output name=tags::$TAGS"
+
+      - name: Show Tags
+        run: echo "Fetched tags $TAGS"
