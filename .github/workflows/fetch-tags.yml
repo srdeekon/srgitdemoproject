@@ -14,7 +14,7 @@ jobs:
         id: fetch_tags
         run: |
           REPO_NAME="srdeekon/srgitdemoproject"  
-          TOKEN=${{ secrets.GH_TOKEN }}
+          TOKEN=${{ secrets.PVT_TOKEN }}
           TAGS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO_NAME/tags" | jq -r '.[].name')
           #echo "::set-output name=tags::$TAGS"
 
