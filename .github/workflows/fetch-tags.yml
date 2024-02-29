@@ -17,6 +17,6 @@ jobs:
           TOKEN=${{ secrets.PVT_TOKEN }}
           TAGS=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/repos/$REPO_NAME/tags" | jq -r '.[].name')
           #echo "::set-output name=tags::$TAGS"
+          echo "Fetched tags $TAGS"
 
-      - name: Show Tags
-        run: echo "Fetched tags $TAGS"
+      
